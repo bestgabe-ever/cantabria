@@ -168,24 +168,29 @@
   .prop-ref-input { width:100%; border:none; background:transparent; font-size:0.95rem; font-weight:600; color:var(--text); outline:none; font-family:inherit; }
   .prop-ref-input::placeholder { color:#D4A0B8; }
 
+
+  /* LANG SELECTOR */
+  .lang-btn { position:absolute; top:1rem; right:1rem; z-index:200; background:rgba(255,255,255,0.7); border:1.5px solid rgba(255,255,255,0.9); border-radius:20px; padding:0.3rem 0.75rem; font-size:0.78rem; font-weight:700; color:var(--pink-700); cursor:pointer; backdrop-filter:blur(4px); }
+  .lang-btn:active { opacity:0.7; }
   @media print { .tab-nav,.sub-nav { display:none; } .panel,.sub-panel { display:block !important; } }
 </style>
 </head>
 <body>
 
 <div class="header">
+  <button class="lang-btn" onclick="toggleLang()" id="lang-btn">ES</button>
   <span class="header-emoji">🏡</span>
   <h1>The Bubis go to Cantabria</h1>
-  <div class="subtitle">Vega de Villafufre &amp; San Vicente de Toranzo</div>
+  <div class="subtitle" data-i18n="subtitle">Territorio Pasiego</div>
   <div class="dates-badge">📅 Sun 28 June – Tue 1 July 2025</div>
 </div>
 
 <nav class="tab-nav" role="tablist">
-  <button class="tab-btn active" onclick="showTab('hotel',this)">🏨 Hotel</button>
-  <button class="tab-btn" onclick="showTab('schedule',this)">📅 Schedule</button>
-  <button class="tab-btn" onclick="showTab('properties',this)">🏡 Properties</button>
-  <button class="tab-btn" onclick="showTab('questions',this)">❓ Questions</button>
-  <button class="tab-btn" onclick="showTab('notes',this)">📝 Notes</button>
+  <button class="tab-btn active" onclick="showTab('hotel',this)" data-i18n="tab_hotel">🏨 Hotel</button>
+  <button class="tab-btn" onclick="showTab('schedule',this)" data-i18n="tab_schedule">📅 Schedule</button>
+  <button class="tab-btn" onclick="showTab('properties',this)" data-i18n="tab_properties">🏡 Properties</button>
+  <button class="tab-btn" onclick="showTab('questions',this)" data-i18n="tab_questions">❓ Questions</button>
+  <button class="tab-btn" onclick="showTab('notes',this)" data-i18n="tab_notes">📝 Notes</button>
 </nav>
 
 <!-- ===== HOTEL ===== -->
@@ -236,14 +241,14 @@
   </div>
 
   <div class="day-header">🌤️ Monday 30 June — Viewings Day 1</div>
-  <div class="appt-block"><div class="appt-time" contenteditable="true" style="outline:none;">17:00</div><div class="appt-name" contenteditable="true" style="outline:none;">Barrio Castillo Pedroso, 1472 — Corvera de Toranzo</div><div class="appt-meta" contenteditable="true" style="outline:none;">Magnolia Homes · Ana Quintana · 340,000 €</div></div>
-  <div class="appt-block"><div class="appt-time" contenteditable="true" style="outline:none;">Add time</div><div class="appt-name" contenteditable="true" style="outline:none;">Property 2 — tap to add name</div><div class="appt-meta" contenteditable="true" style="outline:none;">Agent / notes</div></div>
-  <div class="appt-block"><div class="appt-time" contenteditable="true" style="outline:none;">Add time</div><div class="appt-name" contenteditable="true" style="outline:none;">Property 3 — tap to add name</div><div class="appt-meta" contenteditable="true" style="outline:none;">Agent / notes</div></div>
+  <div class="appt-block"><div class="appt-time" contenteditable="true" style="outline:none;">17:00</div><div class="appt-name" contenteditable="true" style="outline:none;">Barrio Castillo Pedroso, 1472 — Corvera de Toranzo</div><div class="appt-meta" contenteditable="true" style="outline:none;">Magnolia Homes · Ana Quintana · 340,000 €</div><div id="sched-link-1" style="margin-top:0.35rem;"></div></div>
+  <div class="appt-block"><div class="appt-time" contenteditable="true" style="outline:none;">Add time</div><div class="appt-name" contenteditable="true" style="outline:none;">Property 2 — tap to add name</div><div class="appt-meta" contenteditable="true" style="outline:none;">Agent / notes</div><div id="sched-link-2" style="margin-top:0.35rem;"></div></div>
+  <div class="appt-block"><div class="appt-time" contenteditable="true" style="outline:none;">Add time</div><div class="appt-name" contenteditable="true" style="outline:none;">Property 3 — tap to add name</div><div class="appt-meta" contenteditable="true" style="outline:none;">Agent / notes</div><div id="sched-link-3" style="margin-top:0.35rem;"></div></div>
 
   <div class="day-header">🌤️ Tuesday 1 July — Viewings Day 2</div>
-  <div class="appt-block"><div class="appt-time" contenteditable="true" style="outline:none;">Add time</div><div class="appt-name" contenteditable="true" style="outline:none;">Property 4 — tap to add name</div><div class="appt-meta" contenteditable="true" style="outline:none;">Agent / notes</div></div>
-  <div class="appt-block"><div class="appt-time" contenteditable="true" style="outline:none;">Add time</div><div class="appt-name" contenteditable="true" style="outline:none;">Property 5 — tap to add name</div><div class="appt-meta" contenteditable="true" style="outline:none;">Agent / notes</div></div>
-  <div class="appt-block"><div class="appt-time" contenteditable="true" style="outline:none;">Add time</div><div class="appt-name" contenteditable="true" style="outline:none;">Property 6 — tap to add name</div><div class="appt-meta" contenteditable="true" style="outline:none;">Agent / notes</div></div>
+  <div class="appt-block"><div class="appt-time" contenteditable="true" style="outline:none;">Add time</div><div class="appt-name" contenteditable="true" style="outline:none;">Property 4 — tap to add name</div><div class="appt-meta" contenteditable="true" style="outline:none;">Agent / notes</div><div id="sched-link-4" style="margin-top:0.35rem;"></div></div>
+  <div class="appt-block"><div class="appt-time" contenteditable="true" style="outline:none;">Add time</div><div class="appt-name" contenteditable="true" style="outline:none;">Property 5 — tap to add name</div><div class="appt-meta" contenteditable="true" style="outline:none;">Agent / notes</div><div id="sched-link-5" style="margin-top:0.35rem;"></div></div>
+  <div class="appt-block"><div class="appt-time" contenteditable="true" style="outline:none;">Add time</div><div class="appt-name" contenteditable="true" style="outline:none;">Property 6 — tap to add name</div><div class="appt-meta" contenteditable="true" style="outline:none;">Agent / notes</div><div id="sched-link-6" style="margin-top:0.35rem;"></div></div>
   <div class="appt-block" style="border-left-color:var(--pink-100);">
     <div class="appt-time" style="color:var(--text-muted);">Late morning</div>
     <div class="appt-name">Check out — Hotel Alfonsina</div>
@@ -330,11 +335,455 @@
     <button onclick="exportNotes()" style="background:var(--pink-100);border:1.5px solid var(--pink-300);border-radius:20px;padding:0.6rem 1.4rem;font-size:0.88rem;font-weight:700;color:var(--pink-700);cursor:pointer;">📋 Export all notes as .txt</button>
   </div>
   <div id="save-indicator" style="font-size:0.75rem;color:var(--text-muted);margin-bottom:0.5rem;">💾 Auto-saving to this device</div>
-  The Bubis go to Cantabria · June 2025 🌿<br>
-  All data saved locally — no internet required
+  <span id="footer-line1">The Bubis go to Cantabria · June 2025 🌿</span><br>
+  <span id="footer-line2">All data saved locally — no internet required</span>
 </div>
 
 <script>
+// ---- I18N ----
+const T = {
+  en: {
+    subtitle: 'Territorio Pasiego',
+    tab_hotel: '🏨 Hotel', tab_schedule: '📅 Schedule', tab_properties: '🏡 Properties', tab_questions: '❓ Questions', tab_notes: '📝 Notes',
+    lang_btn: 'ES',
+    checkin: 'Check-in: Sun 28 June', checkout: 'Check-out: Tue 1 July', nights: '3 nights',
+    maps: '📍 Open in Google Maps',
+    area_title: '📍 Area overview',
+    area_body: '<p style="margin-bottom:0.55rem;"><strong>Vega de Villafufre</strong> and <strong>San Vicente de Toranzo</strong> sit in the <strong>Valle de Toranzo</strong>, roughly 25–35 km south of Santander — prime <em>Territorio Pasiego</em> country.</p><p>All rural conversions here fall under LOTUC/Ley 5/2022 and require CROTU authorisation. The <em>Guía de Buenas Prácticas para el Territorio Pasiego</em> may also apply.</p>',
+    dist_title: '🚗 Distances from hotel',
+    dist_note: '* Approximate — verify per property location',
+    coast: 'Santander coast',
+    day_sun: '☀️ Sunday 28 June — Arrival',
+    day_mon: '🌤️ Monday 30 June — Viewings Day 1',
+    day_tue: '🌤️ Tuesday 1 July — Viewings Day 2',
+    checkin_time: 'Afternoon', checkin_name: 'Check in — Hotel Alfonsina', checkin_meta: 'Settle in, explore the area, locate properties before viewings',
+    eve_time: 'Evening', eve_name: 'Prep notes, review property details', eve_meta: 'Charge iPad & Pencil overnight',
+    checkout_time: 'Late morning', checkout_name: 'Check out — Hotel Alfonsina', checkout_meta: 'Debrief over coffee before the drive home',
+    sched_notes_title: '📋 Schedule notes',
+    sched_notes_ph: 'Viewing times, agent contacts, order of visits, driving notes...',
+    prog_text: '0 / 6 reviewed',
+    q_intro: 'One set of questions per property. Select the property tab, fill in the reference, check off questions as you go, and add notes inline.',
+    q_ref_label: 'Property reference', q_ref_ph: 'e.g. Cabaña San Roque — Mon 10:00',
+    q_notes_ph: 'Notes...',
+    notes_overview_title: '🗓️ Trip overview', notes_overview_ph: 'General thoughts on the area, atmosphere, what you noticed driving around...',
+    notes_rank_title: '🏆 End-of-trip ranking',
+    rank_gold: '🥇 Top pick', rank_gold_ph: 'Which property and why...',
+    rank_silver: '🥈 Second choice', rank_silver_ph: 'Which property and why...',
+    rank_out: '❌ Ruled out', rank_out_ph: 'Which properties and why...',
+    next_title: '⚡ Next steps', next_ph: 'Solicitor, architect (Laura Álvarez?), follow-up questions, offers to make...',
+    ideas_title: '💡 Ideas & thoughts', ideas_ph: 'Design ideas, things to research, questions that came up...',
+    export_btn: '📋 Export all notes as .txt',
+    save_auto: '💾 Auto-saving to this device', save_ok: '💾 Saved ✓',
+    footer: 'The Bubis go to Cantabria · June 2025 🌿',
+    footer2: 'All data saved locally — no internet required',
+    // property card
+    prop_label: 'Property',
+    add_name: '— Add name / address below —',
+    type_tbc: 'Type TBC', time_tbc: 'Time TBC',
+    id_label: '📌 Identification',
+    prop_name_label: 'Property name / address', prop_name_ph: 'e.g. Cabaña San Roque, Vega de Villafufre',
+    time_label: 'Viewing time', time_ph: 'e.g. Mon 10:00',
+    type_label: 'Property type', type_ph: 'e.g. Cabaña pasiega',
+    price_label: 'Asking price (€)', price_ph: 'e.g. 180,000',
+    agent: 'Agent / vendor',
+    listing_url: 'Listing URL',
+    mapaddr_ph: 'Paste address or coordinates for map link',
+    size_label: '📐 Size & Land',
+    house_label: 'House size (m²)', house_ph: 'e.g. 120 m²',
+    land_label: 'Total land (m²/Ha)', land_ph: 'e.g. 5,000 m²',
+    cabanas_label: 'No. of cabañas', cabanas_ph: 'e.g. 2',
+    cabana2_label: '2nd cabaña (m²)', cabana2_ph: 'e.g. 60 m²',
+    infra_label: '⚡ Infrastructure',
+    elec_label: 'Electricity', elec_ph: 'Connected / solar / none',
+    water_label: 'Water', water_ph: 'Mains / well / spring',
+    sewage_label: 'Sewage', sewage_ph: 'Mains / septic / none',
+    road_label: 'Road access', road_ph: 'Tarmac / track / 4x4',
+    signal_label: 'Internet / signal', signal_ph: 'Good / poor / none',
+    cond_label: 'Condition', cond_ph: 'Ruin / habitable / good',
+    loc_label: '📍 Location',
+    town_label: 'Nearest town', town_ph: 'Name & km',
+    coast_label: 'Distance to coast', coast_ph: 'e.g. 28 km',
+    sdr_label: 'Santander (SDR)', sdr_ph: 'km / time',
+    bio_label: 'Bilbao (BIO)', bio_ph: 'km / time',
+    priv_label: 'Privacy', priv_ph: 'Very private / some / open',
+    views_label: 'Views / orientation', views_ph: 'e.g. South-facing valley',
+    legal_label: '⚖️ Planning & Legal',
+    l1: 'Cambio de uso granted or in progress',
+    l2: 'CROTU authorisation obtained',
+    l3: 'Suelo rústico confirmed — not specially protected',
+    l4: 'Cédula de habitabilidad in place',
+    l5: 'IBI / municipal charges up to date',
+    l6: 'Nota simple reviewed and clean',
+    viab_label: '🌿 Project Viability',
+    viab_hint: 'Tap pill to toggle TBC → Yes → No',
+    viab_eco: 'Eco-home conversion', viab_agro: 'Agrotourism rental', viab_sauna: 'Sauna integration',
+    pill_tbc: 'TBC', pill_yes: 'Yes', pill_no: 'No',
+    feel_label: '✨ First Impressions',
+    feel1: '❤️ Love it', feel2: '🤔 Interesting', feel3: '⚠️ Concerns', feel4: '❌ Pass',
+    rating_label: 'Rating:',
+    notes_label: '📝 Notes', notes_ph: 'First impressions, gut feeling, things to follow up...',
+    // questions
+    q_legal: 'Legal', q_infra: 'Infrastructure', q_land: 'Land & Buildings', q_tourism: 'Agrotourism', q_practical: 'Practical',
+    listing_link: '🔗 View listing',
+  },
+  es: {
+    subtitle: 'Territorio Pasiego',
+    tab_hotel: '🏨 Hotel', tab_schedule: '📅 Agenda', tab_properties: '🏡 Propiedades', tab_questions: '❓ Preguntas', tab_notes: '📝 Notas',
+    lang_btn: 'EN',
+    checkin: 'Entrada: dom. 28 junio', checkout: 'Salida: mar. 1 julio', nights: '3 noches',
+    maps: '📍 Abrir en Google Maps',
+    area_title: '📍 Resumen de la zona',
+    area_body: '<p style="margin-bottom:0.55rem;"><strong>Vega de Villafufre</strong> y <strong>San Vicente de Toranzo</strong> se encuentran en el <strong>Valle de Toranzo</strong>, a unos 25–35 km al sur de Santander — corazón del <em>Territorio Pasiego</em>.</p><p>Todas las conversiones rurales aquí están sujetas a la LOTUC/Ley 5/2022 y requieren autorización CROTU. También puede aplicarse la <em>Guía de Buenas Prácticas para el Territorio Pasiego</em>.</p>',
+    dist_title: '🚗 Distancias desde el hotel',
+    dist_note: '* Aproximado — verificar por ubicación de cada propiedad',
+    coast: 'Costa de Santander',
+    day_sun: '☀️ Domingo 28 junio — Llegada',
+    day_mon: '🌤️ Lunes 30 junio — Visitas Día 1',
+    day_tue: '🌤️ Martes 1 julio — Visitas Día 2',
+    checkin_time: 'Tarde', checkin_name: 'Check-in — Hotel Alfonsina', checkin_meta: 'Instalarse, explorar la zona, localizar las propiedades antes de las visitas',
+    eve_time: 'Noche', eve_name: 'Preparar notas, revisar detalles de propiedades', eve_meta: 'Cargar el iPad y el Apple Pencil',
+    checkout_time: 'Mañana tardía', checkout_name: 'Check-out — Hotel Alfonsina', checkout_meta: 'Debriefing con café antes del viaje de vuelta',
+    sched_notes_title: '📋 Notas de agenda',
+    sched_notes_ph: 'Horarios de visita, contactos de agentes, orden de visitas, notas de conducción...',
+    prog_text: '0 / 6 revisadas',
+    q_intro: 'Un conjunto de preguntas por propiedad. Selecciona la pestaña, añade la referencia, marca las preguntas y añade notas.',
+    q_ref_label: 'Referencia de propiedad', q_ref_ph: 'p.ej. Cabaña San Roque — lun. 10:00',
+    q_notes_ph: 'Notas...',
+    notes_overview_title: '🗓️ Resumen del viaje', notes_overview_ph: 'Impresiones generales de la zona, ambiente, lo que notaste al explorar...',
+    notes_rank_title: '🏆 Ranking final',
+    rank_gold: '🥇 Primera opción', rank_gold_ph: '¿Qué propiedad y por qué?',
+    rank_silver: '🥈 Segunda opción', rank_silver_ph: '¿Qué propiedad y por qué?',
+    rank_out: '❌ Descartadas', rank_out_ph: '¿Qué propiedades y por qué?',
+    next_title: '⚡ Próximos pasos', next_ph: 'Abogado, arquitecta (¿Laura Álvarez?), preguntas de seguimiento, ofertas...',
+    ideas_title: '💡 Ideas y reflexiones', ideas_ph: 'Ideas de diseño, cosas a investigar, preguntas surgidas...',
+    export_btn: '📋 Exportar notas como .txt',
+    save_auto: '💾 Guardado automático en este dispositivo', save_ok: '💾 Guardado ✓',
+    footer: 'Los Bubis van a Cantabria · junio 2025 🌿',
+    footer2: 'Datos guardados localmente — sin conexión a internet',
+    prop_label: 'Propiedad',
+    add_name: '— Añadir nombre / dirección abajo —',
+    type_tbc: 'Tipo PCD', time_tbc: 'Hora PCD',
+    id_label: '📌 Identificación',
+    prop_name_label: 'Nombre / dirección', prop_name_ph: 'p.ej. Cabaña San Roque, Vega de Villafufre',
+    time_label: 'Hora de visita', time_ph: 'p.ej. lun. 10:00',
+    type_label: 'Tipo de propiedad', type_ph: 'p.ej. Cabaña pasiega',
+    price_label: 'Precio de venta (€)', price_ph: 'p.ej. 180.000',
+    agent: 'Agente / vendedor',
+    listing_url: 'URL del anuncio',
+    mapaddr_ph: 'Pega dirección o coordenadas para el enlace al mapa',
+    size_label: '📐 Tamaño y terreno',
+    house_label: 'Tamaño casa (m²)', house_ph: 'p.ej. 120 m²',
+    land_label: 'Terreno total (m²/Ha)', land_ph: 'p.ej. 5.000 m²',
+    cabanas_label: 'Nº de cabañas', cabanas_ph: 'p.ej. 2',
+    cabana2_label: '2ª cabaña (m²)', cabana2_ph: 'p.ej. 60 m²',
+    infra_label: '⚡ Infraestructura',
+    elec_label: 'Electricidad', elec_ph: 'Red / solar / sin conexión',
+    water_label: 'Agua', water_ph: 'Red / pozo / manantial',
+    sewage_label: 'Alcantarillado', sewage_ph: 'Red / fosa séptica / sin conexión',
+    road_label: 'Acceso por carretera', road_ph: 'Asfalto / pista / 4x4',
+    signal_label: 'Internet / cobertura', signal_ph: 'Buena / deficiente / sin cobertura',
+    cond_label: 'Estado', cond_ph: 'Ruina / habitable / buen estado',
+    loc_label: '📍 Ubicación',
+    town_label: 'Pueblo más cercano', town_ph: 'Nombre y km',
+    coast_label: 'Distancia a la costa', coast_ph: 'p.ej. 28 km',
+    sdr_label: 'Santander (SDR)', sdr_ph: 'km / tiempo',
+    bio_label: 'Bilbao (BIO)', bio_ph: 'km / tiempo',
+    priv_label: 'Privacidad', priv_ph: 'Muy privado / algo / abierto',
+    views_label: 'Vistas / orientación', views_ph: 'p.ej. Valle orientado al sur',
+    legal_label: '⚖️ Planificación y Legal',
+    l1: 'Cambio de uso concedido o en trámite',
+    l2: 'Autorización CROTU obtenida',
+    l3: 'Suelo rústico confirmado — sin protección especial',
+    l4: 'Cédula de habitabilidad en vigor',
+    l5: 'IBI / cargos municipales al corriente',
+    l6: 'Nota simple revisada y limpia',
+    viab_label: '🌿 Viabilidad del proyecto',
+    viab_hint: 'Toca el indicador para cambiar PCD → Sí → No',
+    viab_eco: 'Conversión eco-hogar', viab_agro: 'Alquiler agroturismo', viab_sauna: 'Integración sauna',
+    pill_tbc: 'PCD', pill_yes: 'Sí', pill_no: 'No',
+    feel_label: '✨ Primera impresión',
+    feel1: '❤️ Me encanta', feel2: '🤔 Interesante', feel3: '⚠️ Preocupaciones', feel4: '❌ Descartar',
+    rating_label: 'Valoración:',
+    notes_label: '📝 Notas', notes_ph: 'Primera impresión, sensación, cosas a investigar...',
+    q_legal: 'Legal', q_infra: 'Infraestructura', q_land: 'Terreno y edificios', q_tourism: 'Agroturismo', q_practical: 'Práctico',
+    listing_link: '🔗 Ver anuncio',
+  }
+};
+
+let lang = 'en';
+
+function t(key) { return (T[lang] && T[lang][key]) || T.en[key] || key; }
+
+function applyLang() {
+  // Header subtitle stays fixed
+  document.querySelector('.subtitle').textContent = 'Territorio Pasiego';
+  // Lang btn
+  document.getElementById('lang-btn').textContent = t('lang_btn');
+  // Tab buttons
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (key === 'subtitle') return; // already set
+    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+      // handled separately
+    } else {
+      el.textContent = t(key);
+    }
+  });
+  // Tab nav
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    const key = btn.getAttribute('data-i18n');
+    if (key) btn.textContent = t(key);
+  });
+  // Hotel tab static elements
+  const hotelBadges = document.querySelectorAll('#tab-hotel .badge-pink, #tab-hotel .badge-green, #tab-hotel .badge-amber');
+  if (hotelBadges[0]) hotelBadges[0].textContent = t('checkin');
+  if (hotelBadges[1]) hotelBadges[1].textContent = t('checkout');
+  if (hotelBadges[2]) hotelBadges[2].textContent = t('nights');
+  const mapsLinks = document.querySelectorAll('.map-link');
+  mapsLinks.forEach(a => { if (!a.id) a.textContent = t('maps'); });
+  // Area card
+  const areaCard = document.querySelector('#tab-hotel .card:first-of-type');
+  if (areaCard) {
+    areaCard.querySelector('.card-title').textContent = t('area_title');
+    const body = areaCard.querySelector('div[style]');
+    if (body) body.innerHTML = t('area_body');
+  }
+  const distCard = document.querySelectorAll('#tab-hotel .card')[1];
+  if (distCard) {
+    distCard.querySelector('.card-title').textContent = t('dist_title');
+    const note = distCard.querySelector('div[style*="font-size:0.73"]');
+    if (note) note.textContent = t('dist_note');
+    const rows = distCard.querySelectorAll('div[style*="justify-content"]');
+    if (rows[2]) rows[2].querySelector('span:first-child').textContent = t('coast');
+  }
+  // Schedule static
+  const dayHeaders = document.querySelectorAll('.day-header');
+  if (dayHeaders[0]) dayHeaders[0].textContent = t('day_sun');
+  if (dayHeaders[1]) dayHeaders[1].textContent = t('day_mon');
+  if (dayHeaders[2]) dayHeaders[2].textContent = t('day_tue');
+  const appts = document.querySelectorAll('#tab-schedule .appt-block');
+  // Sunday arrival
+  if (appts[0]) {
+    const els = appts[0].children;
+    if (els[0]) els[0].textContent = t('checkin_time');
+    if (els[1]) els[1].textContent = t('checkin_name');
+    if (els[2]) els[2].textContent = t('checkin_meta');
+  }
+  if (appts[1]) {
+    const els = appts[1].children;
+    if (els[0]) els[0].textContent = t('eve_time');
+    if (els[1]) els[1].textContent = t('eve_name');
+    if (els[2]) els[2].textContent = t('eve_meta');
+  }
+  // checkout block (last)
+  const lastAppt = appts[appts.length - 1];
+  if (lastAppt) {
+    const els = lastAppt.children;
+    if (els[0]) els[0].textContent = t('checkout_time');
+    if (els[1]) els[1].textContent = t('checkout_name');
+    if (els[2]) els[2].textContent = t('checkout_meta');
+  }
+  const schedCard = document.querySelector('#tab-schedule .card');
+  if (schedCard) {
+    schedCard.querySelector('.card-title').textContent = t('sched_notes_title');
+    const ta = schedCard.querySelector('textarea');
+    if (ta && !ta.value) ta.placeholder = t('sched_notes_ph');
+  }
+  // Progress
+  updatePropProgress();
+  // Questions intro
+  const qIntro = document.querySelector('#tab-questions .card div');
+  if (qIntro) qIntro.textContent = t('q_intro');
+  // Notes tab
+  const noteCards = document.querySelectorAll('#tab-notes .card');
+  if (noteCards[0]) {
+    noteCards[0].querySelector('.card-title').textContent = t('notes_overview_title');
+    const ta = noteCards[0].querySelector('textarea');
+    if (ta && !ta.value) ta.placeholder = t('notes_overview_ph');
+  }
+  if (noteCards[1]) {
+    noteCards[1].querySelector('.card-title').textContent = t('notes_rank_title');
+    const divs = noteCards[1].querySelectorAll('div[style*="font-weight:700"]');
+    if (divs[0]) divs[0].textContent = t('rank_gold');
+    if (divs[1]) divs[1].textContent = t('rank_silver');
+    if (divs[2]) divs[2].textContent = t('rank_out');
+    const tas = noteCards[1].querySelectorAll('textarea');
+    if (tas[0] && !tas[0].value) tas[0].placeholder = t('rank_gold_ph');
+    if (tas[1] && !tas[1].value) tas[1].placeholder = t('rank_silver_ph');
+    if (tas[2] && !tas[2].value) tas[2].placeholder = t('rank_out_ph');
+  }
+  if (noteCards[2]) {
+    noteCards[2].querySelector('.card-title').textContent = t('next_title');
+    const ta = noteCards[2].querySelector('textarea');
+    if (ta && !ta.value) ta.placeholder = t('next_ph');
+  }
+  if (noteCards[3]) {
+    noteCards[3].querySelector('.card-title').textContent = t('ideas_title');
+    const ta = noteCards[3].querySelector('textarea');
+    if (ta && !ta.value) ta.placeholder = t('ideas_ph');
+  }
+  // Export btn
+  const exportBtn = document.querySelector('button[onclick="exportNotes()"]');
+  if (exportBtn) exportBtn.textContent = t('export_btn');
+  // Save indicator
+  const ind = document.getElementById('save-indicator');
+  if (ind && ind.textContent.indexOf('✓') === -1) ind.textContent = t('save_auto');
+  // Footer
+  const footer = document.querySelector('.footer');
+  if (footer) {
+    const footerLines = footer.querySelectorAll('br');
+    // Just update the text nodes
+    const textNodes = [...footer.childNodes].filter(n => n.nodeType === 3);
+    if (textNodes[0]) textNodes[0].textContent = '\n  ' + t('footer') + '\n  ';
+    if (textNodes[1]) textNodes[1].textContent = '\n';
+  }
+  const fl1 = document.getElementById('footer-line1');
+  if (fl1) fl1.textContent = t('footer');
+  const fl2 = document.getElementById('footer-line2');
+  if (fl2) fl2.textContent = t('footer2');
+  // Apply to all property cards (rendered elements)
+  for (let n = 1; n <= 6; n++) applyPropLang(n);
+  applyQuestionsLang();
+  // Re-render schedule links
+  for (let n = 1; n <= 6; n++) {
+    const urlInput = document.getElementById('p' + n + '-url');
+    if (urlInput) updateScheduleLink(n, urlInput.value);
+  }
+}
+
+function applyPropLang(n) {
+  const panel = document.getElementById('prop-sub-' + n);
+  if (!panel) return;
+  const id = 'p' + n;
+
+  const propNum = panel.querySelector('.prop-num');
+  if (propNum) propNum.textContent = t('prop_label') + ' 0' + n;
+
+  const titleEl = document.getElementById(id + '-title');
+  if (titleEl && (titleEl.textContent.includes('Add name') || titleEl.textContent.includes('Añadir nombre'))) {
+    titleEl.textContent = t('add_name');
+  }
+  const typeEl = document.getElementById(id + '-type');
+  if (typeEl && (typeEl.textContent === 'Type TBC' || typeEl.textContent === 'Tipo PCD')) typeEl.textContent = t('type_tbc');
+  const timeEl = document.getElementById(id + '-time');
+  if (timeEl && (timeEl.textContent === 'Time TBC' || timeEl.textContent === 'Hora PCD')) timeEl.textContent = t('time_tbc');
+
+  // Sub labels
+  const subLabels = panel.querySelectorAll('.sub-label');
+  const labelKeys = ['id_label','size_label','infra_label','loc_label','legal_label','viab_label','feel_label','notes_label'];
+  subLabels.forEach((el, i) => { if (labelKeys[i]) el.textContent = t(labelKeys[i]); });
+
+  // Criteria labels
+  const criteriaLabels = panel.querySelectorAll('.criteria-label');
+  const clKeys = ['prop_name_label','time_label','type_label','price_label','agent','listing_url',
+                  'house_label','land_label','cabanas_label','cabana2_label',
+                  'elec_label','water_label','sewage_label','road_label','signal_label','cond_label',
+                  'town_label','coast_label','sdr_label','bio_label','priv_label','views_label'];
+  criteriaLabels.forEach((el, i) => { if (clKeys[i]) el.textContent = t(clKeys[i]); });
+
+  // Criteria input placeholders
+  const criteriaInputs = panel.querySelectorAll('.criteria-input');
+  const ciKeys = ['prop_name_ph','time_ph','type_ph','price_ph',null,'listing_url',
+                  'house_ph','land_ph','cabanas_ph','cabana2_ph',
+                  'elec_ph','water_ph','sewage_ph','road_ph','signal_ph','cond_ph',
+                  'town_ph','coast_ph','sdr_ph','bio_ph','priv_ph','views_ph'];
+  criteriaInputs.forEach((el, i) => {
+    if (ciKeys[i] && ciKeys[i] !== 'listing_url') el.placeholder = t(ciKeys[i]);
+  });
+
+  // Map address placeholder
+  const mapAddr = document.getElementById(id + '-mapaddr');
+  if (mapAddr) mapAddr.placeholder = t('mapaddr_ph');
+
+  // Map link text
+  const mapLink = panel.querySelector('.map-link');
+  if (mapLink) mapLink.textContent = t('maps');
+
+  // Checkboxes
+  const checkLabels = panel.querySelectorAll('.check-item label');
+  const ckKeys = ['l1','l2','l3','l4','l5','l6'];
+  checkLabels.forEach((el, i) => { if (ckKeys[i]) el.textContent = t(ckKeys[i]); });
+
+  // Viability hint
+  const viabHint = panel.querySelector('.sub-panel > .prop-body > div[style*="0.75rem"]');
+  // find the small hint text
+  const allSmallDivs = [...panel.querySelectorAll('div[style*="font-size:0.75rem"]')];
+  allSmallDivs.forEach(d => { if (d.textContent.includes('TBC') || d.textContent.includes('PCD') || d.textContent.includes('toggle') || d.textContent.includes('Toca')) d.textContent = t('viab_hint'); });
+
+  // Viability labels
+  const vLabels = panel.querySelectorAll('.v-label');
+  const vKeys = ['viab_eco','viab_agro','viab_sauna'];
+  vLabels.forEach((el, i) => { if (vKeys[i]) el.textContent = t(vKeys[i]); });
+
+  // Pills - only update text if not been interacted with (tbc state)
+  panel.querySelectorAll('.v-pill').forEach(pill => {
+    const dot = '<div class="v-pill-dot"></div>';
+    if (pill.classList.contains('tbc')) pill.innerHTML = dot + t('pill_tbc');
+    else if (pill.classList.contains('yes')) pill.innerHTML = dot + t('pill_yes');
+    else if (pill.classList.contains('no')) pill.innerHTML = dot + t('pill_no');
+  });
+
+  // Feel buttons
+  const feelBtns = panel.querySelectorAll('.feel-btn');
+  const feelKeys = ['feel1','feel2','feel3','feel4'];
+  feelBtns.forEach((el, i) => { if (feelKeys[i]) el.textContent = t(feelKeys[i]); });
+
+  // Rating label
+  const ratingLabel = panel.querySelector('.rating-label');
+  if (ratingLabel) ratingLabel.textContent = t('rating_label');
+
+  // Notes placeholder
+  const notesTa = panel.querySelector('.notes-area.tall');
+  if (notesTa && !notesTa.value) notesTa.placeholder = t('notes_ph');
+}
+
+function applyQuestionsLang() {
+  for (let n = 1; n <= 6; n++) {
+    const qpanel = document.getElementById('q-sub-' + n);
+    if (!qpanel) continue;
+    const refLabel = qpanel.querySelector('.prop-ref-label');
+    if (refLabel) refLabel.textContent = t('q_ref_label');
+    const refInput = qpanel.querySelector('.prop-ref-input');
+    if (refInput && !refInput.value) refInput.placeholder = t('q_ref_ph');
+    // Section labels
+    const sectionLabels = qpanel.querySelectorAll('.q-section-label .q-tag');
+    const sKeys = ['q_legal','q_infra','q_land','q_tourism','q_practical'];
+    sectionLabels.forEach((el, i) => { if (sKeys[i]) el.textContent = t(sKeys[i]); });
+    // Q notes placeholders
+    qpanel.querySelectorAll('.q-notes').forEach(ta => { if (!ta.value) ta.placeholder = t('q_notes_ph'); });
+    // Q text — these come from the QUESTIONS array, re-render
+    const qTexts = qpanel.querySelectorAll('.q-text');
+    let qi = 0;
+    QUESTIONS.forEach(section => {
+      section.qs.forEach(q => {
+        if (qTexts[qi]) {
+          // get translated question
+          const tq = QUESTIONS_ES[qi] || q;
+          qTexts[qi].textContent = lang === 'es' ? tq : q;
+        }
+        qi++;
+      });
+    });
+  }
+}
+
+function toggleLang() {
+  lang = lang === 'en' ? 'es' : 'en';
+  applyLang();
+  try { localStorage.setItem('bubis_lang', lang); } catch(e) {}
+}
+
+// ---- SCHEDULE LINK ----
+function updateScheduleLink(n, url) {
+  const el = document.getElementById('sched-link-' + n);
+  if (!el) return;
+  if (url && url.trim().startsWith('http')) {
+    el.innerHTML = '<a href="' + url.trim() + '" target="_blank" style="font-size:0.78rem;color:var(--pink-500);font-weight:600;text-decoration:none;">' + t('listing_link') + '</a>';
+  } else {
+    el.innerHTML = '';
+  }
+}
+
 // ---- TAB NAV ----
 function showTab(name, btn) {
   document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
@@ -380,8 +829,13 @@ function propCard(n) {
           <input class="criteria-input" type="text" placeholder="e.g. 180,000">
         </div>
         <div class="criteria-item">
-          <div class="criteria-label">Agent / vendor</div>
+          <div class="criteria-label" data-i18n="agent">Agent / vendor</div>
           <input class="criteria-input" type="text" placeholder="Name &amp; phone">
+        </div>
+        <div class="criteria-item" style="grid-column:1/-1;">
+          <div class="criteria-label" data-i18n="listing_url">Listing URL</div>
+          <input class="criteria-input" type="text" id="${id}-url" placeholder="https://..."
+            oninput="updateScheduleLink(${n}, this.value)">
         </div>
       </div>
 
@@ -452,7 +906,7 @@ function propCard(n) {
         <button class="star-btn" onclick="setStars(this)">⭐</button>
       </div>
 
-      <div class="sub-label">📝 Notes</div>
+      <div class="sub-label" data-i18n="tab_notes">📝 Notes</div>
       <textarea class="notes-area tall" placeholder="First impressions, gut feeling, things to follow up..." oninput="updatePropProgress()"></textarea>
     </div>
   </div>`;
@@ -463,7 +917,6 @@ const QUESTIONS = [
   { tag:'legal', label:'Legal', qs:[
     'Has cambio de uso been applied for or granted? Can we see the resolution?',
     'Is the land suelo rústico de especial protección or suelo rústico ordinario? Any Red Natura / PRUG protected zones?',
-    'Has a CROTU authorisation been obtained or initiated?',
     'Is there a cédula de habitabilidad — and if not, can the structure be legally registered as residential?',
     'Is the nota simple clean — no embargos, mortgages, easements, or co-ownership issues?',
     'Are IBI payments up to date? Any outstanding municipal charges?',
@@ -524,6 +977,38 @@ function qPanel(n) {
   html += `</div>`;
   return html;
 }
+
+// ---- QUESTIONS (ES) ----
+const QUESTIONS_ES = [
+  // Legal
+  '¿Se ha solicitado o concedido el cambio de uso? ¿Podemos ver la resolución?',
+  '¿Es el terreno suelo rústico de especial protección o suelo rústico ordinario? ¿Hay zonas protegidas (Red Natura / PRUG)?',
+  '¿Existe una cédula de habitabilidad? Si no, ¿puede la estructura registrarse legalmente como vivienda?',
+  '¿La nota simple está limpia — sin embargos, hipotecas, servidumbres ni problemas de copropiedad?',
+  '¿Está el IBI al corriente de pago? ¿Hay cargos municipales pendientes?',
+  '¿Se aplica la Guía de Buenas Prácticas para el Territorio Pasiego? ¿Ha contactado el vendedor con el Ayuntamiento?',
+  // Infrastructure
+  '¿Está la electricidad conectada a la red, o depende de solar/generador? ¿Cuál es la capacidad de suministro?',
+  '¿Cuál es la fuente de agua — red, suministro comunitario, pozo propio o manantial? ¿Existe una concesión de aguas registrada?',
+  '¿Cómo es la situación del alcantarillado — red, fosa séptica? ¿Cuándo fue revisada por última vez?',
+  '¿La carretera es asfaltada hasta la entrada? ¿Quién es el propietario y quién la mantiene?',
+  '¿Qué cobertura móvil hay en la finca? ¿Hay disponibilidad de fibra óptica o ADSL?',
+  // Land & Buildings
+  '¿Cuál es la superficie catastral exacta — m² de casa, cada cabaña y total de la finca? ¿Coincide con la nota simple?',
+  '¿Están todas las construcciones registradas en el catastro? ¿Hay edificaciones ilegales o sin licencia?',
+  '¿En qué estado se encuentran el tejado, los muros y los cimientos de la cabaña principal? ¿Se ha realizado algún peritaje?',
+  '¿Existen lindes compartidos, caminos vecinales (servidumbres de paso) o derechos de acceso a través de la finca?',
+  '¿Hay margen del 20% de volumen disponible bajo la LOTUC para la rehabilitación?',
+  // Agrotourism
+  '¿Es la segunda cabaña suficientemente grande y está bien situada para convertirla en uso agroturístico bajo la Ley de Turismo de Cantabria?',
+  '¿Ha consultado el Ayuntamiento sobre el uso turístico? ¿Existe algún precedente en la zona?',
+  '¿Cabría una sauna dentro de una estructura existente, o requeriría una obra nueva?',
+  // Practical
+  '¿Por qué vende el propietario y cuánto tiempo lleva en el mercado?',
+  '¿Es negociable el precio? ¿Cuál es el plazo del vendedor para el cierre?',
+  '¿Quiénes son los vecinos inmediatos? ¿Cómo es la relación con la comunidad?',
+  '¿Hay algún historial de inundaciones, hundimientos o corrimientos de tierra en la finca o sus alrededores?',
+];
 
 // ---- RENDER ----
 (function init() {
@@ -623,6 +1108,15 @@ function qPanel(n) {
   syncSubLabels(1, p1.address);
 })();
 
+// Restore language preference
+try {
+  const savedLang = localStorage.getItem('bubis_lang');
+  if (savedLang && (savedLang === 'en' || savedLang === 'es')) {
+    lang = savedLang;
+    setTimeout(applyLang, 150);
+  }
+} catch(e) {}
+
 // ---- SUB TABS ----
 function showProp(n, btn) {
   document.querySelectorAll('#prop-panels .sub-panel').forEach(p => p.classList.remove('active'));
@@ -674,7 +1168,7 @@ function updatePropProgress() {
     const ta = panel.querySelector('.notes-area.tall');
     if (ta && ta.value.trim().length > 3) filled++;
   });
-  document.getElementById('prop-prog-text').textContent = filled + ' / 6 reviewed';
+  document.getElementById('prop-prog-text').textContent = filled + ' / 6 ' + (lang === 'es' ? 'revisadas' : 'reviewed');
   document.getElementById('prop-prog-bar').style.width = Math.round(filled/6*100) + '%';
 }
 
@@ -773,7 +1267,7 @@ function saveState() {
   try {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(collectState()));
     const ind = document.getElementById('save-indicator');
-    if (ind) { ind.textContent = '💾 Saved ✓'; setTimeout(() => { ind.textContent = '💾 Auto-saving to this device'; }, 1500); }
+    if (ind) { ind.textContent = t('save_ok'); setTimeout(() => { ind.textContent = t('save_auto'); }, 1500); }
   } catch(e) {}
 }
 
